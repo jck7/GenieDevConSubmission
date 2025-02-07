@@ -1,0 +1,60 @@
+<UserControl x:Class="ExcelGenie.Controls.WorkbookExplorer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ExcelGenie.Controls"
+             xmlns:vm="clr-namespace:ExcelGenie.ViewModels">
+    <UserControl.Resources>
+        <!-- Color brushes for different object types -->
+        <SolidColorBrush x:Key="WorkbookColor" Color="#4CAF50" />
+        <SolidColorBrush x:Key="WorksheetColor" Color="#2196F3" />
+        <SolidColorBrush x:Key="ChartColor" Color="#FFC107" />
+
+        <!-- Data Templates -->
+        <HierarchicalDataTemplate DataType="{x:Type vm:WorkbookViewModel}"
+                                ItemsSource="{Binding Worksheets}">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Fill="{StaticResource WorkbookColor}" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding Name}" 
+                         FontWeight="Bold"
+                         Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=isDarkTheme, Converter={StaticResource ThemeColorConverter}}"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate DataType="{x:Type vm:WorksheetViewModel}"
+                                ItemsSource="{Binding Charts}">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Fill="{StaticResource WorksheetColor}" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding Name}"
+                         Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=isDarkTheme, Converter={StaticResource ThemeColorConverter}}"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ChartViewModel}">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Fill="{StaticResource ChartColor}" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding Name}"
+                         Foreground="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=isDarkTheme, Converter={StaticResource ThemeColorConverter}}"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <TreeView x:Name="ObjectTreeView"
+                  ItemsSource="{Binding Workbooks}"
+                  SelectedItemChanged="ObjectTreeView_SelectedItemChanged"
+                  Background="Transparent"
+                  BorderThickness="0">
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Padding" Value="2,4"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#3D3D3D"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.Resources>
+        </TreeView>
+    </Grid>
+</UserControl> 
