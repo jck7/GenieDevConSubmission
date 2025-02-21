@@ -2,15 +2,15 @@
 
 ## Description
 
-Genie For Excel is a desktop application designed to enhance productivity and automate repetitive tasks in Microsoft Excel. This tool integrates seamlessly with Excel's COM objects and offers additional AI-driven functionality for analyzing workbooks, generating formula insights, auditing spreadsheets, creating macros, and more.
+Genie For Excel is a Windows desktop application designed to enhance productivity in Microsoft Excel. This tool integrates with Excel's COM objects for analyzing workbooks, auditing spreadsheets, and more.
 
 ## Requirements
 
--   **Operating System**: Windows 10 or above (Windows 11 recommended)
--   **.NET SDK**: .NET 8.0 (or higher)
+-   **Operating System**: Windows 10 or above
+-   **.NET SDK**: .NET 8.0
 -   **Excel**: Microsoft Office Excel 2016 or later
--   **Internet Connection**: Needed for certain cloud/AI features
--   **Palantir Foundry**: (Optional) If leveraging Palantir integration for advanced analytics
+-   **Internet Connection**: Needed for AI features
+-   **Palantir Foundry**: Leverages Ontology SDK + AIP Logic
 
 ## Installation
 
